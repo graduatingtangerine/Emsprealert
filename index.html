@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMS Pre-Alert Form</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; padding: 0; }
+        h1 { color: #003366; }
+        label { display: block; margin-top: 10px; font-weight: bold; }
+        input, select, textarea { width: 100%; padding: 8px; margin-top: 4px; }
+        button { margin-top: 15px; padding: 10px 20px; background-color: #007BFF; color: white; border: none; cursor: pointer; }
+        pre { background: #f4f4f4; padding: 10px; border: 1px solid #ccc; white-space: pre-wrap; word-wrap: break-word; }
+    </style>
+</head>
+<body>
+    <h1>EMS Pre-Alert Form</h1>
+    <form id="emsForm">
+        <label>Hospital ED</label>
+        <input type="text" id="hospital">
+        
+        <label>Patient Name or ID</label>
+        <input type="text" id="patient">
+        
+        <label>Age</label>
+        <input type="number" id="age">
+        
+        <label>Gender</label>
+        <input type="text" id="gender">
+        
+        <label>Heart Rate (bpm)</label>
+        <input type="number" id="hr">
+        
+        <label>Blood Pressure (mmHg)</label>
+        <input type="text" id="bp">
+        
+        <label>Respiratory Rate (/min)</label>
+        <input type="number" id="rr">
+        
+        <label>SpO2 (%)</label>
+        <input type="number" id="spo2">
+        
+        <label>GCS</label>
+        <input type="number" id="gcs">
+        
+        <label>LAMS Score</label>
+        <input type="number" id="lams">
+        
+        <label>Chief Complaint</label>
+        <textarea id="complaint" rows="2"></textarea>
+        
+        <label>ETA (minutes)</label>
+        <input type="number" id="eta">
+        
+        <button type="button" onclick="generateAlert()">Generate Pre-Alert</button>
+    </form>
+
+    <h2>Pre-Alert Output</h2>
+    <pre id="output"></pre>
+
+    <script>
+        function generateAlert() {
+            const get = id => document.getElementById(id).value;
+            const output = `Pre-Alert to ${get("hospital")}
+
+Patient: ${get("patient")}, ${get("age")} y/o ${get("gender")}
+Chief Complaint: ${get("complaint")}
+
+Vitals:
+HR: ${get("hr")} bpm
+BP: ${get("bp")} mmHg
+RR: ${get("rr")} /min
+SpO2: ${get("spo2")}%
+GCS: ${get("gcs")}
+LAMS: ${get("lams")}
+
+ETA: ${get("eta")} mins`;
+            document.getElementById("output").innerText = output;
+        }
+    </script>
+</body>
+</html>
